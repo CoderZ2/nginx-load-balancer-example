@@ -30,7 +30,7 @@ docker run -p 3333:5555 -it nginx-balancer
 ```
 docker run -p 4444:5555 -it nginx-balancer
 ```
-### Enter following url in your browser and you will see how load balancer work
+### Enter following url in your browser and you will see how load balancer work at "C:/nginx/upstream.log"
 
 ```
 localhost:9000

@@ -10,6 +10,12 @@ http://nginx.org/en/download.html
 
 [config](https://github.com/CoderZ2/nginx-load-balancer-example/blob/main/nginx.conf)
 
+### Restart nginx
+
+```
+nginx -s reload
+```
+
 ### Build docker
 
 ```

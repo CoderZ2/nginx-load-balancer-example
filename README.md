@@ -1,4 +1,4 @@
-# Example for nginx load balancer
+# Example for nginx load balancer to reduce server traffic
 
 ### Clone the project
 

@@ -16,8 +16,65 @@ git clone https://github.com/CoderZ2/nginx-load-balancer-example.git
 
 1. Copy the following configuration into the default Nginx configuration file (usually located at /etc/nginx/nginx.conf on Linux systems or C:\nginx\conf\nginx.conf on    Windows systems):
 
-```
+``` nginx
+http {
+    include mime.types;
 
+
+      # Define a log format that includes upstream response time
+    log_format upstreamlog '$remote_addr - $remote_user [$time_local] '
+                          'upstream_addr=$upstream_addr '
+                          '"$request" $status $body_bytes_sent '
+                          '"$http_referer" "$http_user_agent" '
+                          'rt=$upstream_response_time';
+
+    upstream backendserver {
+        server 127.0.0.1:1111;
+        server 127.0.0.1:2222;
+        server 127.0.0.1:3333;
+        server 127.0.0.1:4444;
+    }
+
+    server {
+
+        listen 9000;
+
+        root C:\Users/Asus/Desktop/nginx-docker-load-balancer/front;
+
+        rewrite ^/number/(\w+) /count/$1;
+
+        location ~*  /count/[0-9]/ {
+            root C:\Users/Asus/Desktop/nginx-docker-load-balancer/front;
+            try_files /index.html = 404;
+        }
+
+        access_log upstream.log upstreamlog;
+
+        location / {
+            proxy_pass http://backendserver;
+        }
+
+        location /fruits {
+            root C:\Users/Asus/Desktop/nginx-docker-load-balancer/front;
+            index index.html;
+        }
+
+        location /carbs {
+            alias C:\Users/Asus/Desktop/nginx-docker-load-balancer/front/fruits;
+        }
+
+        location /vegetables {
+            root C:\Users/Asus/Desktop/nginx-docker-load-balancer;
+            try_files vegetables/vegetables.html/ index.html = 404;
+        }
+
+        location /crops {
+            return 307 /fruits;
+        }
+    }
+}
+
+events {}
 ```
 
 2. Restart Nginx to apply the new configuration:

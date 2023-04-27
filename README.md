@@ -1,5 +1,11 @@
 # Example for nginx load balancer
 
+### Clone the project
+
+```
+https://github.com/CoderZ2/nginx-load-balancer-example.git
+```
+
 ### Install nginx on your computer
 
 ```

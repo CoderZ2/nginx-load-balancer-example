@@ -16,7 +16,7 @@ http://nginx.org/en/download.html
 docker build . -t nginx-balancer
 ```
 
-### Enter followind code in your cmd for running contianer
+### Run container
 
 ```
 docker run -p 1111:5555 -it nginx-balancer
